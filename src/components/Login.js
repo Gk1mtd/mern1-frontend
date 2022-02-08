@@ -18,13 +18,18 @@ function Login() {
     login(requestBody);
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" name="name" />
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <p>Please Login here</p>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Username</label>
+        <input type="text" name="name" />
+        <br/>
+        <label htmlFor="password">Password</label>
+        <input type="password" name="password" />
+        <br/>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
 
