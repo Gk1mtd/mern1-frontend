@@ -1,23 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-const axios = require("axios");
-const api = axios.create({ baseURL: "http://localhost:5000/api" });
+import useSignup from "../customHooks/signup";
 
 function Signup() {
-  const [badrequest, setBadrequest] = React.useState(false);
-  const navigator = useNavigate();
+  const { badrequest, signup } = useSignup();
 
-  async function signup(userData) {
-    try {
-      // console.log("bla");
-      const { status } = await api.post("/signup", userData);
-      if (status === 200) {
-        navigator("/login");
-      }
-    } catch (error) {
-      setBadrequest(true);
-    }
-  }
   return (
     <div>
       <p>Please sign up here</p>
