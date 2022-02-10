@@ -1,32 +1,22 @@
-import axios from "axios";
-const api = axios.create({ baseURL: "http://localhost:5000/api" });
+import useLogin from "../customHooks/login";
 
 function Login() {
-  async function login(requestBody) {
-    console.log(requestBody);
-    const user = await api.post("/login", requestBody);
-    console.log(user);
-  }
+  const { loggedIn, handleSubmit } = useLogin();
 
-  let requestBody = {};
-  function handleSubmit(event) {
-    event.preventDefault();
-    requestBody = {
-      name: event.target[0].value,
-      password: event.target[1].value,
-    };
-    login(requestBody);
-  }
   return (
     <div>
-      <p>Please Login here</p>
+      {loggedIn.authed ? (
+        <p>Hello {loggedIn.name}</p>
+      ) : (
+        <p>You are logged in yet</p>
+      )}
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Username</label>
         <input type="text" name="name" />
-        <br/>
+        <br />
         <label htmlFor="password">Password</label>
         <input type="password" name="password" />
-        <br/>
+        <br />
         <button type="submit">Login</button>
       </form>
     </div>
